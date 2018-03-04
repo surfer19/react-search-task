@@ -23,7 +23,9 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     return (
       <div>
         <Navigation/>      
-        <SearchContainer/>
+        <div className="container">
+          <SearchContainer/>
+        </div>
       </div>
     );
   }

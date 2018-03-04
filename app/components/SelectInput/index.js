@@ -1,7 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-import OuterContainer from './OuterContainer';
 
 class SelectInput extends React.Component {
     constructor(props){
