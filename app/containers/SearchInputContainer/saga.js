@@ -3,7 +3,6 @@ import { changePlaces, changePlacesSuccess, changePlacesFailed } from './action'
 import { makeSelectUrl } from './selectors';
 // Root saga
 export default function* rootSaga() {
-    console.log('Hello saga!');
   // if necessary, start multiple sagas at once with `all` 
   yield [
     takeEvery('FETCHED_PLACES', fetchPlacesAsync),
@@ -13,7 +12,7 @@ export default function* rootSaga() {
 function* fetchPlacesAsync() {
     let getCurrentUrl = yield select(makeSelectUrl());
     // prevent empty calls
-    if (getCurrentUrl != ''){
+    if (getCurrentUrl != '') {
         console.log('fetchPlacesAsync', getCurrentUrl);
         try {
             yield put(changePlaces());

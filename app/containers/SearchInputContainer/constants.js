@@ -1,6 +1,6 @@
 
 /*
- * SearchConstants
+ * Search Input Constants
  * Each action has a corresponding type, which the reducer knows and picks up on.
  * To avoid weird typos between the reducer and the actions, we save them as
  * constants here. We prefix them with 'yourproject/YourComponent' so we avoid
@@ -12,3 +12,4 @@
 export const CHANGE_INPUT_PLACES         =  'react-search-task/SearchContainer/CHANGE_INPUT_PLACES';
 export const CHANGE_INPUT_PLACES_SUCCESS =  'react-search-task/SearchContainer/CHANGE_INPUT_PLACES_SUCCESS';
 export const CHANGE_INPUT_PLACES_FAIL    =  'react-search-task/SearchContainer/CHANGE_INPUT_PLACES_FAIL';
+export const CHANGE_SELECTED_OPTIONS     =  'react-search-task/SearchContainer/CHANGE_SELECTED_OPTIONS';
