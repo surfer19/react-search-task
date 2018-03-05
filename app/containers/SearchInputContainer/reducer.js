@@ -37,7 +37,7 @@ function searchReducer(state = initialState, action) {
         .set('error', false)
 
     case CHANGE_INPUT_PLACES_SUCCESS:
-        console.log('action.places', action.places);
+        // console.log('action.places', action.places);
         return state
         .set('url', '')    
         .set('loading', false)  
@@ -57,8 +57,7 @@ function searchReducer(state = initialState, action) {
         .set('error', false)
         .set('places', []);
     
-    case CHANGE_SELECTED_OPTIONS:
-        
+    case CHANGE_SELECTED_OPTIONS:        
         if (action.selectedInstance === 'flyFrom'){
             return state
             .set('selectedOptionFrom', action.selectedOptions);            
@@ -68,7 +67,7 @@ function searchReducer(state = initialState, action) {
             .set('selectedOptionTo', action.selectedOptions);            
 
         } else {
-            throw new Error('please pass valid instance name to component flyFrom/flyTo');
+            throw new Error('please pass valid instance name to component - flyFrom/flyTo');
         }
         
     default:

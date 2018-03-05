@@ -17,6 +17,11 @@ import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// dates
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+
+
 // Import root app
 import App from 'containers/App';
 

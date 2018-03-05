@@ -17,21 +17,31 @@ import reducer from './reducer';
 import saga from './saga';
 import { fetchPlaces, changeSelectedOptions } from './action';
 import { makeSelectPlaces, makeSelectLoading, makeSelectError } from './selectors'
+//comoponent libs
+import { SingleDatePicker } from 'react-dates';
 
 class SearchInputContainer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props){
     super(props);
     this.selectedInstance = this.props.instanceType;
+    this.state = {
+      places: [],
+      selectedOptionFrom: '',
+      selectedOptionTo: '',
+      focused: props.autoFocus,
+      date: props.initialDate,
+    }
   }
-  state = {
-    places: [],
-    selectedOption: '',
-  }
-  // TODO: refactor we need to have internal react state
-  handleSelection = (selectedOption) => {
-    this.setState({ selectedOption });
+
+  // TODO: refactor we don't need internal react state
+  handleSelection = (selectedOption, selectedInstance) => {
+    if (selectedInstance === 'flyFrom'){
+      this.setState({ selectedOptionFrom: selectedOption});
+    } else { 
+      this.setState({ selectedOptionTo: selectedOption});
+    }
     console.log(`Selected: ${selectedOption.label}`);
-    return this.props.dispatch(changeSelectedOptions(selectedOption.value, this.selectedInstance));
+    return this.props.dispatch(changeSelectedOptions(selectedOption.value, selectedInstance));
   }
 
   handleChange = (changedValue) => {
@@ -39,26 +49,74 @@ class SearchInputContainer extends React.PureComponent { // eslint-disable-line 
     return changedValue ? this.props.dispatch(fetchPlaces(changedValue)): '';
   }   
 
+  onDateChange(date) {
+    this.setState({ date });
+  }
+
+  onFocusChange({ focused }) {
+    this.setState({ focused });
+  }
+
+  handleFormConfirm() {
+    console.log('confirmed');
+  }
+
   render() {
-    const { selectedOption } = this.state;
-    const value = selectedOption && selectedOption.value;
+    const valueFrom = this.state.selectedOptionFrom;
+    const valueTo = this.state.selectedOptionTo;
+    
+    // copy to new arr just attributes what we need 
     // array contain all current place options from API when user type letters
     const currentPlaces = [];
     this.props.places.map((place, idx) => {        
       currentPlaces.push ({
         value: place.id,
-        label: place.value
+        label: place.value,
       });
     })        
-  
+    const { focused, date } = this.state;
+
     return (
-        <div className="col">
-          <SearchInput customPlaceholder={this.props.customPlaceholder}
-                  selectedOption={selectedOption}
-                  currentPlaces={currentPlaces}
-                  onInputChange={callbackVal => this.handleChange(callbackVal)} 
-                  onChange={callbackVal => this.handleSelection(callbackVal)} />
-        </div>
+      <div className="row">
+          <div className="col">
+            <SearchInput customPlaceholder={"Fly from"}
+                    selectedOption={valueFrom}
+                    currentPlaces={currentPlaces}
+                    onInputChange={callbackVal => this.handleChange(callbackVal)} 
+                    onChange={callbackVal1 => this.handleSelection(callbackVal1, "flyFrom")} />
+          </div>
+          <div className="col">  
+            <SearchInput customPlaceholder={"Fly to"}
+                    selectedOption={valueTo}
+                    currentPlaces={currentPlaces}
+                    onInputChange={callbackVal => this.handleChange(callbackVal)} 
+                    onChange={callbackVal2 => this.handleSelection(callbackVal2, "flyTo")} />
+          </div>
+          <div className="col">
+          <SingleDatePicker
+            small
+            block
+            id="date_input"
+            date={date}
+            placeholder="Departure"
+            focused={focused}
+            onDateChange={val => this.onDateChange(val)}
+            onFocusChange={val => this.onFocusChange(val)}
+            displayFormat="D/M/Y"/>
+            
+
+            {/* <DateRangePicker
+                    small
+                    // startDate={this.state.startDate}
+                    // endDate={this.state.endDate}
+                    // onDatesChange={({ startDate, endDate }) => { this.setState({ startDate, endDate })}}
+                    focusedInput={this.state.focusedInput}
+                    onFocusChange={(focusedInput) => { this.setState({ focusedInput })}}/> */}
+          </div>
+          <div className="col">
+            <button className="btn btn-outline-success my-2 my-sm-0" onClick={this.handleFormConfirm}>Search</button>
+          </div>
+      </div>
     );
   }
 }

@@ -3,7 +3,7 @@ import React from 'react';
 function Navigation() {
     return (        
         <div className="navbar navbar-expand-lg navbar-light bg-light mb-5">
-            <a className="navbar-brand" href="#">Awesome Flight Search</a>
+            <a className="navbar-brand" href="#">Flight Search</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
@@ -15,10 +15,10 @@ function Navigation() {
                 </li>
 
                 </ul>
-                <form className="form-inline my-2 my-lg-0">
+                {/* <form className="form-inline my-2 my-lg-0">
                     <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
                     <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                </form> */}
             </div>
         </div>
 

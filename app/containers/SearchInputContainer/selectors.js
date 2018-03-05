@@ -29,3 +29,17 @@ export const makeSelectPlaces = () => createSelector(
      return selectState.get('places')
   }
 );
+
+export const makeSelectFlyFrom = () => createSelector(
+  selectSearch,
+  (selectState) => {
+     return selectState.get('selectedOptionFrom')
+  }
+)
+
+export const makeSelectFlyTo = () => createSelector(
+  selectSearch,
+  (selectState) => {
+     return selectState.get('selectedOptionTo')
+  }
+)

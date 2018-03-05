@@ -6,6 +6,7 @@ import { combineReducers } from 'redux-immutable';
 import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import searchReducer from './containers/SearchInputContainer/reducer'
+import resultReducer from './containers/ResultContainer/reducer'
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 
 /*
@@ -44,6 +45,7 @@ export default function createReducer(injectedReducers) {
     route: routeReducer,
     language: languageProviderReducer,
     search: searchReducer,
+    result: resultReducer,
     ...injectedReducers,
   });
 }

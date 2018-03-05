@@ -10,12 +10,13 @@
  */
 
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import Navigation from '../../components/Navigation';
 import SearchInputContainer from '../SearchInputContainer';
+import ResultContainer from '../ResultContainer';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -24,10 +25,8 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
       <div>
         <Navigation/>      
         <div className="container">
-          <div className="row">
-            <SearchInputContainer instanceType="flyFrom" customPlaceholder="Fly from..."/>
-            <SearchInputContainer instanceType="flyTo" customPlaceholder="Fly to..."/>
-          </div>
+            <SearchInputContainer />
+            <ResultContainer/>
         </div>
       </div>
     );

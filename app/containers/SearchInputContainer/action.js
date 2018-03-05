@@ -23,7 +23,7 @@ export const changePlacesFailed = () => {
 }
 
 export const fetchPlaces = (dataUrl) => {
-    console.log('fetch', dataUrl);
+    // console.log('fetch', dataUrl);
     return {
         type: 'FETCHED_PLACES',
         url: dataUrl

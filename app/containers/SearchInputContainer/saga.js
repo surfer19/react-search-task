@@ -13,7 +13,7 @@ function* fetchPlacesAsync() {
     let getCurrentUrl = yield select(makeSelectUrl());
     // prevent empty calls
     if (getCurrentUrl != '') {
-        console.log('fetchPlacesAsync', getCurrentUrl);
+        // console.log('fetchPlacesAsync', getCurrentUrl);
         try {
             yield put(changePlaces());
             const data = yield call(() => {
@@ -27,7 +27,7 @@ function* fetchPlacesAsync() {
                     }
                 })            
             });
-            console.log('vysl data', data);
+            // console.log('vysl data', data);
             yield put(changePlacesSuccess(data));
         } catch (error) {
             yield put(changePlacesFailed());
