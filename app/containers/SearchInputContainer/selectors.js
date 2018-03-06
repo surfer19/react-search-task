@@ -43,3 +43,23 @@ export const makeSelectFlyTo = () => createSelector(
      return selectState.get('selectedOptionTo')
   }
 )
+export const makeSelectFormSent = () => createSelector(
+  selectSearch,
+  (selectState) => {
+     return selectState.get('formSubmit')
+  }
+)
+
+export const makeSelectResults = () => createSelector(
+  selectSearch,
+  (selectState) => {
+     return selectState.get('resultData')
+  }
+)
+
+export const makeSelectDate = () => createSelector(
+  selectSearch,
+  (selectState) => {
+     return selectState.get('selectedDate')
+  }
+)

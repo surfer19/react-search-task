@@ -15,8 +15,8 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import reducer from './reducer';
 import saga from './saga';
-import { fetchPlaces, changeSelectedOptions } from './action';
-import { makeSelectPlaces, makeSelectLoading, makeSelectError } from './selectors'
+import { fetchPlaces,fetchResults, changeSelectedOptions, changeFormSubmit, changeSelectedDate } from './action';
+import { makeSelectPlaces, makeSelectLoading, makeSelectError, makeSelectDate } from './selectors'
 //comoponent libs
 import { SingleDatePicker } from 'react-dates';
 
@@ -28,8 +28,8 @@ class SearchInputContainer extends React.PureComponent { // eslint-disable-line 
       places: [],
       selectedOptionFrom: '',
       selectedOptionTo: '',
-      focused: props.autoFocus,
-      date: props.initialDate,
+      // focused: props.autoFocus,
+      // date: props.initialDate,
     }
   }
 
@@ -50,15 +50,18 @@ class SearchInputContainer extends React.PureComponent { // eslint-disable-line 
   }   
 
   onDateChange(date) {
-    this.setState({ date });
+    this.setState({date});
+    this.props.dispatch(changeSelectedDate(date));
   }
 
   onFocusChange({ focused }) {
     this.setState({ focused });
   }
 
-  handleFormConfirm() {
-    console.log('confirmed');
+  handleFormSubmit = () => {
+    console.log('submited form');
+    return this.props.dispatch(fetchResults());
+    // return this.props.dispatch(changeFormSubmit());
   }
 
   render() {
@@ -80,6 +83,7 @@ class SearchInputContainer extends React.PureComponent { // eslint-disable-line 
       <div className="row">
           <div className="col">
             <SearchInput customPlaceholder={"Fly from"}
+                    // selectedOption={valueFrom}
                     selectedOption={valueFrom}
                     currentPlaces={currentPlaces}
                     onInputChange={callbackVal => this.handleChange(callbackVal)} 
@@ -103,18 +107,9 @@ class SearchInputContainer extends React.PureComponent { // eslint-disable-line 
             onDateChange={val => this.onDateChange(val)}
             onFocusChange={val => this.onFocusChange(val)}
             displayFormat="D/M/Y"/>
-            
-
-            {/* <DateRangePicker
-                    small
-                    // startDate={this.state.startDate}
-                    // endDate={this.state.endDate}
-                    // onDatesChange={({ startDate, endDate }) => { this.setState({ startDate, endDate })}}
-                    focusedInput={this.state.focusedInput}
-                    onFocusChange={(focusedInput) => { this.setState({ focusedInput })}}/> */}
           </div>
           <div className="col">
-            <button className="btn btn-outline-success my-2 my-sm-0" onClick={this.handleFormConfirm}>Search</button>
+            <button className="btn btn-outline-success my-2 my-sm-0" onClick={this.handleFormSubmit}>Search</button>
           </div>
       </div>
     );
@@ -125,6 +120,7 @@ const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
   error: makeSelectError(),
   places: makeSelectPlaces(),
+  date: makeSelectDate(),
 });
 
 // const mapStateToProps = createStructuredSelector({});

@@ -19,13 +19,16 @@ import SearchInputContainer from '../SearchInputContainer';
 import ResultContainer from '../ResultContainer';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-
+  constructor(){
+    super();
+  }
   render() {
     return (
       <div>
-        <Navigation/>      
+        <Navigation/>              
         <div className="container">
-            <SearchInputContainer />
+        <h6>Direct flights <span className="badge badge-secondary mb-3">New</span></h6>
+            <SearchInputContainer/>
             <ResultContainer/>
         </div>
       </div>

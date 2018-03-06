@@ -13,3 +13,5 @@ export const CHANGE_INPUT_PLACES         =  'react-search-task/SearchContainer/C
 export const CHANGE_INPUT_PLACES_SUCCESS =  'react-search-task/SearchContainer/CHANGE_INPUT_PLACES_SUCCESS';
 export const CHANGE_INPUT_PLACES_FAIL    =  'react-search-task/SearchContainer/CHANGE_INPUT_PLACES_FAIL';
 export const CHANGE_SELECTED_OPTIONS     =  'react-search-task/SearchContainer/CHANGE_SELECTED_OPTIONS';
+export const CHANGE_FORM_SUBMIT          =  'react-search-task/SearchContainer/CHANGE_FORM_SUBMIT';
+export const CHANGE_SELECTED_DATE        =  'react-search-task/SearchContainer/CHANGE_SELECTED_DATE';
