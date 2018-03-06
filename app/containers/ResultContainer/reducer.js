@@ -12,10 +12,6 @@
 
 import { fromJS } from 'immutable';
 
-// import {
-//     CHANGE_INPUT_PLACES,
-// } from './constants';
-
 // The initial state of the App
 const initialState = fromJS({
 });
@@ -24,7 +20,6 @@ function resultReducer(state = initialState, action) {
   switch (action.type) {
 
     default:
-    console.log('Default!');
     return state
   }
 }

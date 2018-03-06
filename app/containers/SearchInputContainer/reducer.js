@@ -47,7 +47,6 @@ function searchReducer(state = initialState, action) {
           .set('resultData', {});
 
     case CHANGE_INPUT_PLACES_SUCCESS:
-        // console.log('action.places', action.places);
         return state
             .set('url', '')    
             .set('loading', false)  
@@ -91,7 +90,6 @@ function searchReducer(state = initialState, action) {
              .set('formSubmit', false);
 
     default:
-        console.log('Default!');
         return state
   }
 }

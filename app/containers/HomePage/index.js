@@ -10,8 +10,6 @@
  */
 
 import React from 'react';
-// import axios from 'axios';
-
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import Navigation from '../../components/Navigation';
@@ -27,7 +25,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
       <div>
         <Navigation/>              
         <div className="container">
-        <h6>Direct flights <span className="badge badge-secondary mb-3">New</span></h6>
+        <h6>Only Direct flights <span className="badge badge-secondary mb-3">New</span></h6>
             <SearchInputContainer/>
             <ResultContainer/>
         </div>

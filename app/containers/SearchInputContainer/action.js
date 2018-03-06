@@ -25,7 +25,6 @@ export const changePlacesFailed = () => {
 }
 
 export const fetchResults = (res) => {
-    // console.log('fetch', dataUrl);
     return {
         type: 'FETCHED_RESULTS',
         results: res
@@ -34,7 +33,6 @@ export const fetchResults = (res) => {
 
 
 export const fetchPlaces = (dataUrl) => {
-    // console.log('fetch', dataUrl);
     return {
         type: 'FETCHED_PLACES',
         url: dataUrl

@@ -1,5 +1,4 @@
 import React from 'react';
-// import SelectInput from '../SelectInput';
 import Select from 'react-select'; 
 import 'react-select/dist/react-select.css'; 
 

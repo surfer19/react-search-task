@@ -1,10 +1,6 @@
-// import axios from 'axios';
+
 import SearchInput from '../../components/SearchInput'
-/**
- * Saga + redux stuff
- */
 import { RESTART_ON_REMOUNT } from 'utils/constants';
-// new
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
@@ -17,7 +13,6 @@ import reducer from './reducer';
 import saga from './saga';
 import { fetchPlaces,fetchResults, changeSelectedOptions, changeFormSubmit, changeSelectedDate } from './action';
 import { makeSelectPlaces, makeSelectLoading, makeSelectError, makeSelectDate } from './selectors'
-//comoponent libs
 import { SingleDatePicker } from 'react-dates';
 
 class SearchInputContainer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -28,24 +23,21 @@ class SearchInputContainer extends React.PureComponent { // eslint-disable-line 
       places: [],
       selectedOptionFrom: '',
       selectedOptionTo: '',
-      // focused: props.autoFocus,
-      // date: props.initialDate,
     }
   }
 
-  // TODO: refactor we don't need internal react state
   handleSelection = (selectedOption, selectedInstance) => {
     if (selectedInstance === 'flyFrom'){
       this.setState({ selectedOptionFrom: selectedOption});
     } else { 
       this.setState({ selectedOptionTo: selectedOption});
     }
-    console.log(`Selected: ${selectedOption.label}`);
-    return this.props.dispatch(changeSelectedOptions(selectedOption.value, selectedInstance));
+    // cannot be null
+    let prevented = selectedOption ? selectedOption.value : ''
+    return this.props.dispatch(changeSelectedOptions(prevented, selectedInstance));
   }
 
   handleChange = (changedValue) => {
-    console.log('changedValue: ', changedValue)
     return changedValue ? this.props.dispatch(fetchPlaces(changedValue)): '';
   }   
 
@@ -59,9 +51,7 @@ class SearchInputContainer extends React.PureComponent { // eslint-disable-line 
   }
 
   handleFormSubmit = () => {
-    console.log('submited form');
     return this.props.dispatch(fetchResults());
-    // return this.props.dispatch(changeFormSubmit());
   }
 
   render() {
@@ -71,7 +61,7 @@ class SearchInputContainer extends React.PureComponent { // eslint-disable-line 
     // copy to new arr just attributes what we need 
     // array contain all current place options from API when user type letters
     const currentPlaces = [];
-    this.props.places.map((place, idx) => {        
+    this.props.places.map((place, idx) => {
       currentPlaces.push ({
         value: place.id,
         label: place.value,
@@ -83,7 +73,6 @@ class SearchInputContainer extends React.PureComponent { // eslint-disable-line 
       <div className="row">
           <div className="col">
             <SearchInput customPlaceholder={"Fly from"}
-                    // selectedOption={valueFrom}
                     selectedOption={valueFrom}
                     currentPlaces={currentPlaces}
                     onInputChange={callbackVal => this.handleChange(callbackVal)} 
@@ -125,7 +114,7 @@ const mapStateToProps = createStructuredSelector({
 
 // const mapStateToProps = createStructuredSelector({});
 // `mode` is an optional argument, default value is `RESTART_ON_REMOUNT`
-const withSaga = injectSaga({ key: 'SearchContainer', saga}); //mode: RESTART_ON_REMOUNT });
+const withSaga = injectSaga({ key: 'SearchContainer', saga}); 
 const withConnect = connect(mapStateToProps, null);
 const withReducer = injectReducer({ key: 'SearchContainer', reducer });
 
